@@ -132,9 +132,9 @@ def upload(request):
 
         new_post = Post.objects.create(user=user,image=image,caption = caption)
         new_post.save()
-        return redirect("/")
+        return redirect("index")
     else:
-        return redirect("/")
+        return redirect("index")
 
 @login_required(login_url='signin')
 def like_post(request):
@@ -149,12 +149,12 @@ def like_post(request):
         new_like.save()
         post.no_likes = post.no_likes+1
         post.save()
-        return redirect('/')
+        return redirect('index')
     else:
         like_filter.delete()
         post.no_likes = post.no_likes-1
         post.save()
-        return redirect('/')
+        return redirect('index')
 
 @login_required(login_url='signin')
 def profile(request, pk):
@@ -195,7 +195,7 @@ def follow(request):
             new_follower.save()
             return redirect('/profile/'+user)
     else:
-        return redirect('/')
+        return redirect('index')
 
 @login_required(login_url='signin')
 def search(request):
