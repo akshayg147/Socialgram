@@ -77,6 +77,7 @@ def signup(request):
             return redirect('signup')
     else:
         return render(request, 'signup.html')
+
 def signin(request):
     if request.method =='POST':
         username = request.POST['username']
@@ -85,7 +86,7 @@ def signin(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request,user)
-            return redirect('/')
+            return redirect('index')
         else:
             messages.info(request,'userid or password is wrong')
             return redirect('signin')
