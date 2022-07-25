@@ -12,6 +12,7 @@ def index(request):
     user_object = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_object)
     posts = Post.objects.all()
+    #following
     user_following_list = []
     feed = []
     user_following = FollowerCount.objects.filter(follower = request.user.username)
@@ -26,6 +27,7 @@ def index(request):
     for user in user_following:
         user_list = User.objects.get(username=user.user)
         user_following_all.append(user_list)
+    #suggestion
     new_suggestion_list = []
     for x in list(all_user):
         if x not in list(user_following_all):
