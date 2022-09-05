@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>Settings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+
+</head>
+
+<body>
+
+
+
+
+
+
+            <div class="container m-auto">
+
+                <h1 class="text-2xl leading-none text-gray-900 tracking-tight mt-3"><a href="settings">Account setting</a> | Change password</h1>
+                <br>
+                <div>
+                    <style>
+                        h5{
+                            color: grey;
+                        }
+                    </style>
+                    {% for message in messages %}
+                    <h5>{{message}}</h5>
+                    {% endfor %}
+                </div>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="password" name = "Old_password" placeholder="Old password" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="password" name = "new_password" placeholder="***********" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+                    <input type="password" name = "confirm_password" placeholder="***********" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
+<!--                        <a href="#"> Forgot Your Password? </a>-->
+<!--                    </div>-->
+                    <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Confirm</button>
+                </form>
+            </div>
+        </div>
+
+
+
+                    </div>
+                    <br>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+ <!-- Scripts
+    ================================================== -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+</body>
+
+</html>

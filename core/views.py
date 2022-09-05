@@ -12,6 +12,7 @@ def index(request):
     user_object = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_object)
     posts = Post.objects.all()
+    #following
     user_following_list = []
     feed = []
     user_following = FollowerCount.objects.filter(follower = request.user.username)
@@ -26,6 +27,7 @@ def index(request):
     for user in user_following:
         user_list = User.objects.get(username=user.user)
         user_following_all.append(user_list)
+    #suggestion
     new_suggestion_list = []
     for x in list(all_user):
         if x not in list(user_following_all):
@@ -215,3 +217,28 @@ def search(request):
             username_profile_list.append(profile_lists)
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html',{'user_profile':user_profile, 'username_profile_list':username_profile_list})
+
+@login_required(login_url='signin')
+def Forgot_pass(request):
+    user_object = User.objects.get(username=request.user.username)
+    if request.method == 'POST':
+        old_password = request.POST['Old_password']
+        user = auth.authenticate(username=user_object, password=old_password)
+        if user is not None:
+            new_password = request.POST['new_password']
+            confirm_pass = request.POST['confirm_password']
+            if new_password == confirm_pass and new_password != old_password:
+                user_object.set_password(new_password)
+                user_object.save()
+                return redirect('signin')
+            if new_password != confirm_pass:
+                messages.info(request, "PASSWORD DO NOT MATCH")
+                return render(request, 'Forgot_pass.html')
+            if new_password == old_password:
+                messages.info(request,"PASSWORD CAN'T BE same as old password")
+                return render(request,'Forgot_pass.html')
+        else:
+            messages.info(request, "Current pass is wrong")
+            return render(request, 'Forgot_pass.html')
+    else:
+        return render(request,'Forgot_pass.html')
