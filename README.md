@@ -1,6 +1,7 @@
 # Socialgram
 This a Facebook clone created by me.
-Tech used:
+
+Tech used are:
 1. For Front-end:-
    HTML,
    CSS, and
