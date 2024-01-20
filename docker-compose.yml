@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web: 
+    image: akshay1047/socialgram:1.0
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - db-data:/db.sqlite3
+    ports:
+      - 8000:8000
+
+volumes:
+  db-data:
+    driver: local
