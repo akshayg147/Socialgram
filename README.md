@@ -1,4 +1,41 @@
-# Socialgram
+# How to run:
+## Running manually:
+1.     git clone https://github.com/akshayg147/Socialgram.git
+2.     python -m venv venv
+3.     source venv/bin/activate
+4.     pip install -r requirements.txt
+5.     python manage.py createsuper
+   (Note:- enter the credentials for superuser)
+6.     python manage.py makemigrations
+7.     python manage.py migrate
+8.     python manage.py runserver
+BOOM!, visit 127.0.0.1:8000
+
+## Run using Docker:
+1.     git clone https://github.com/akshayg147/Socialgram.git
+2.     docker-compose up -d
+
+Boom!, visit 127.0.0.1:8000 or 0.0.0.0:8000 (one of them will work).
+
+Note:- To create superuser or to migrate in docker container run the following:
+1.      docker ps
+
+   - copy the container ID againt image with this name `akshay1047/socialgram:1.0`
+                  
+
+2.      docker exec -it [paste container ID] /bin/bash
+   
+   OR
+
+        docker exec -it [paste container ID] /bin/sh             (if above command throw error)
+
+   - This will open terminal inside docker container, now you can run all the commands to migrate, makemigrations or to create superuser.
+
+2.     exit
+   - This is to exit the terminal of docker container.
+
+# Walkthrough
+## Socialgram
 This a Facebook clone created by me.
 
 Tech used are:
